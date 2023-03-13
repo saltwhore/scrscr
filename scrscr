@@ -1,0 +1,358 @@
+# imports and from
+from tkinter import *
+import tkinter as tk
+from PIL import ImageTk, Image, ImageDraw, ImageFont
+import urllib.request
+import io
+import cairo
+import turtle
+import tkinter.font as tkFont
+
+# Создание окна
+window = tk.Tk()
+window.title("Подсос Вики Луковой")
+window.geometry('1920x1080')
+
+# Скрытие кнопок
+def hide_buttons():
+    # скрыть кнопки
+    btn_minigame.grid_forget()
+    btn_beautiful.grid_forget()
+    btn_fun.grid_forget()
+    btn_fact.grid_forget()
+    btn_facts.grid_forget()
+    btn_quote.grid_forget()
+    btn_developer.grid_forget()
+    btn_cat.grid_forget()
+
+# функция для отображения всех кнопок
+def show_buttons():
+    for widget in window.winfo_children():
+        if widget.winfo_class() == 'Button':
+            widget.grid()
+
+
+# Вскрытие кнопок
+def show_game_buttons():
+    btn_game1.grid(row=0, column=0)
+    btn_game2.grid(row=0, column=1)
+
+# Конфигурация мини-игры
+def minigame():
+    hide_buttons()
+    lbl.configure(text="Добро пожаловать в мини-игру (prod.GreatMaxutko)"
+                             "\nПравила игры довольно простые."
+                             "\nТебе потребуется ответить на 1 вопрос.",
+                  bg="MediumPurple", fg='white', font=("Times New Roman", 25))
+    lbl.place(relx=0.243, rely=0.05, anchor=CENTER)
+    window.configure(bg="red")
+    try:
+        pil_image = Image.open("D:\siski\8989.jpg")
+        photo = ImageTk.PhotoImage(pil_image)
+        image_label.configure(image=photo)
+        image_label.image = photo
+        image_label.place(x=-2, y=-2)
+        btn_beautiful.configure(bg="OldLace", activebackground="pink", fg='black')
+        btn_fun.configure(bg="OldLace", activebackground="pink", fg='black')
+        btn_quote.configure(bg="OldLace", activebackground="pink", fg='black')
+        btn_facts.configure(bg="OldLace", activebackground="pink", fg='black')
+        btn_developer.configure(bg="OldLace", activebackground="pink", fg='black')
+        btn_fact.configure(bg="OldLace", activebackground="pink", fg='black')
+        btn_cat.configure(bg="OldLace", activebackground="pink", fg='black')
+    except FileNotFoundError:
+        print("Ошибка: файл не найден")
+
+# Конфигурация кнопки beautiful
+def beautiful():
+    lbl.configure(text="Госпожа Виктория (та шо Лукова типа) кхм,\nочень хочется вам сообщить о том, "
+                       "что вы выглядите очень прекрасно,\nсамая красивая в мире женщина, прекрасней вас только"
+                       "\nnothing (типа ничего), вот)", bg="PaleVioletRed", fg='black',
+                  font=("Times New Roman", 25))
+    lbl.place(relx=0.3, rely=0.5, anchor=CENTER)
+    window.configure(bg="red")
+    try:
+        pil_image = Image.open("D:\siski\898.jpg")
+        photo = ImageTk.PhotoImage(pil_image)
+        image_label.configure(image=photo)
+        image_label.image = photo
+        image_label.place(x=-2, y=-2)
+        btn_beautiful.configure(bg="OldLace", activebackground="pink", fg='black')
+        btn_fun.configure(bg="OldLace", activebackground="pink", fg='black')
+        btn_quote.configure(bg="OldLace", activebackground="pink", fg='black')
+        btn_facts.configure(bg="OldLace", activebackground="pink", fg='black')
+        btn_developer.configure(bg="OldLace", activebackground="pink", fg='black')
+        btn_fact.configure(bg="OldLace", activebackground="pink", fg='black')
+        btn_cat.configure(bg="OldLace", activebackground="pink", fg='black')
+    except FileNotFoundError:
+        print("Ошибка: файл не найден")
+
+# Конфигурация кнопки fun
+def fun():
+    lbl.configure(text='Нашла Вика золотую рыбку, рыбка ей говорит:'
+                       '\n-Отпусти меня, и я исполню любое твоё желание!'
+                       '\n-Хочу чтобы Максим никогда не говорил слово "нет".'
+                       '\n-Готово!'
+                       '\nВозвращается Вика домой и говорит Максиму:'
+                       '\n-Максим, купи мне шубу :('
+                       '\n-Пошла нахуй)', bg='SpringGreen', font=("Times New Roman", 25))
+    lbl.place(relx=0.3, rely=0.2, anchor=CENTER)
+    window.configure(bg="red")
+    try:
+        pil_image = Image.open("D:\siski\999.jpg")
+        photo = ImageTk.PhotoImage(pil_image)
+        image_label.configure(image=photo)
+        image_label.image = photo
+        image_label.place(x=-2, y=-2)
+        btn_beautiful.configure(bg="MediumSeaGreen", activebackground="MediumAquamarine")
+        btn_fun.configure(bg="MediumSeaGreen", activebackground="MediumAquamarine")
+        btn_quote.configure(bg="MediumSeaGreen", activebackground="MediumAquamarine")
+        btn_facts.configure(bg="MediumSeaGreen", activebackground="MediumAquamarine")
+        btn_developer.configure(bg="MediumSeaGreen", activebackground="MediumAquamarine")
+        btn_fact.configure(bg="MediumSeaGreen", activebackground="MediumAquamarine")
+        btn_cat.configure(bg="MediumSeaGreen", activebackground="MediumAquamarine")
+    except FileNotFoundError:
+        print("Ошибка: файл не найден")
+
+# Конфигурация кнопки quote
+def quote():
+    lbl.configure(text="Запомните, Госпожа..."
+                       "\nКаждый может кинуть камень в волка,"
+                       "\nно не каждый может кинуть волка в камень...", bg="black", fg="white"
+                  , font=("Times New Roman", 25))
+    lbl.place(relx=0.6, rely=0.1, anchor='center')
+    window.configure(bg="red")
+    try:
+        pil_image = Image.open("D:\siski\988.jpg")
+        photo = ImageTk.PhotoImage(pil_image)
+        image_label.configure(image=photo)
+        image_label.image = photo
+        image_label.place(x=-2, y=-2)
+        btn_beautiful.configure(bg="grey", activebackground="Silver")
+        btn_fun.configure(bg="grey", activebackground="Silver")
+        btn_quote.configure(bg="grey", activebackground="Silver")
+        btn_facts.configure(bg="grey", activebackground="Silver")
+        btn_developer.configure(bg="grey", activebackground="Silver")
+        btn_fact.configure(bg="grey", activebackground="Silver")
+        btn_cat.configure(bg="grey", activebackground="Silver")
+    except FileNotFoundError:
+        print("Ошибка: файл не найден")
+
+# Конфигурация кнопки facts
+def facts():
+    lbl.configure(text="Самая прекрасная девушка в мире - Вика?"
+                       "\nФакт."
+                       "\nГлядя в глаза Вики Максим начинает теряться в пространстве?"
+                       "\nФакт."
+                       "\nМаксим любит Вику больше всех на свете?"
+                       "\nФакт."
+                       "\nЕщё больше фактов узнайте у моего создателя Максима!", bg="gray", fg="white",
+                  font=("Times New Roman", 15))
+    lbl.place(relx=0.6, rely=0.1, anchor='center')
+    window.configure(bg="red")
+    try:
+        pil_image = Image.open("D:\siski\998.jpg")
+        photo = ImageTk.PhotoImage(pil_image)
+        image_label.configure(image=photo)
+        image_label.image = photo
+        image_label.place(x=-2, y=-2)
+        btn_beautiful.configure(bg="silver", activebackground="gray")
+        btn_fun.configure(bg="silver", activebackground="gray")
+        btn_quote.configure(bg="silver", activebackground="gray")
+        btn_facts.configure(bg="silver", activebackground="gray")
+        btn_developer.configure(bg="silver", activebackground="gray")
+        btn_fact.configure(bg="silver", activebackground="gray")
+        btn_cat.configure(bg="silver", activebackground="gray")
+
+    except FileNotFoundError:
+        print("Ошибка: файл не найден")
+
+# Конфигурация кнопки developer
+def developer():
+    lbl.configure(text="Это мой создатель."
+                       "\nОн в целом нормальный типулёк, ну это по настроению."
+                       "\nКста, прикинь, этот гений через 3 часа (на момент написания этих строчек кода)"
+                       "\nвставать должен на урок с дириком))) Ну ему ваще пох, променял сон на Вику"
+                       "\nЛукову. Но за то за 9 часов было сделано аж 30% где-то от работы."
+                       "\nКста, ты в это время в обиде на этого величайшего была, лохушка) Ой,"
+                       "\nпростите за дерзость, госпожа, вырвалось. Короче типулёк те тут самую"
+                       "\nмассивную открытку делает, никогда в жизни ни для кого такое не делал,"
+                       "\nпоэтому я считаю он заслужил прям ща в данный момент чмокнуть его в щечку)"
+                       "\n*на разработку пока ушло 19 часов и 3.5 литра кофе* (13.03.23)", bg="gray", fg="white",
+                  font=("Times New Roman", 17))
+    lbl.place(relx=0.4, rely=0.68, anchor='center')
+    window.configure(bg="red")
+    try:
+        pil_image = Image.open("D:\siski\888.jpg")
+        photo = ImageTk.PhotoImage(pil_image)
+        image_label.configure(image=photo)
+        image_label.image = photo
+        image_label.place(x=-2, y=-2)
+        btn_beautiful.configure(bg="LightSalmon", activebackground="Salmon")
+        btn_fun.configure(bg="LightSalmon", activebackground="Salmon")
+        btn_quote.configure(bg="LightSalmon", activebackground="Salmon")
+        btn_facts.configure(bg="LightSalmon", activebackground="Salmon")
+        btn_developer.configure(bg="Silver", activebackground="white")
+        btn_fact.configure(bg="LightSalmon", activebackground="Salmon")
+        btn_cat.configure(bg="LightSalmon", activebackground="Salmon")
+    except FileNotFoundError:
+        print("Ошибка: файл не найден")
+
+# Конфигурация кнопки hub
+def hub():
+    lbl.configure(text="О, Госпожа, Вы вернулись в главное меню!\nНапомню, что на сердечках лежат кнопочки, "
+                         "\nкоторые мной управляют, пользуйтесь на здоровье.", bg="LightPink", font=("Times New Roman", 25))
+    lbl.place(relx=0.2, rely=0.4, anchor=CENTER)
+    window.configure(bg="red")
+    try:
+        pil_image = Image.open("D:\siski\kotik.png")
+        photo = ImageTk.PhotoImage(pil_image)
+        image_label.configure(image=photo)
+        image_label.image = photo
+        image_label.place(x=-2, y=-2)
+        btn_beautiful.configure(bg="DeepPink", activebackground="pink")
+        btn_fun.configure(bg="Magenta", activebackground="MediumPurple")
+        btn_quote.configure(bg="DeepPink", activebackground="pink")
+        btn_facts.configure(bg="DeepPink", activebackground="pink")
+        btn_developer.configure(bg="DeepPink", activebackground="pink")
+        btn_fact.configure(bg="DeepPink", activebackground="pink")
+        btn_cat.configure(bg="DeepPink", activebackground="pink")
+    except FileNotFoundError:
+        print("Ошибка: файл не найден")
+
+# Конфигурация кнопки fact
+def fact():
+    lbl.configure(text="Забавный факт:"
+                       "\nПод конец"
+                       "\nпервого дня "
+                       "\nнашего знакомства"
+                       "\nты и мой создатель "
+                       "\nобсуждали сколько стоят "
+                       "\nяйца, хуй и яичники)))", bg="white", fg="black", font=("Times New Roman", 25))
+    lbl.place(relx=0.13, rely=0.2, anchor=CENTER)
+    window.configure(bg="red")
+    try:
+        pil_image = Image.open("D:\siski\9898.jpg")
+        photo = ImageTk.PhotoImage(pil_image)
+        image_label.configure(image=photo)
+        image_label.image = photo
+        image_label.place(x=-2, y=-2)
+        btn_beautiful.configure(bg="white", activebackground="pink", fg='black')
+        btn_fun.configure(bg="white", activebackground="pink", fg='black')
+        btn_quote.configure(bg="white", activebackground="pink", fg='black')
+        btn_facts.configure(bg="white", activebackground="pink", fg='black')
+        btn_developer.configure(bg="white", activebackground="pink", fg='black')
+        btn_fact.configure(bg="white", activebackground="pink", fg='black')
+        btn_cat.configure(bg="white", activebackground="pink", fg='black')
+    except FileNotFoundError:
+        print("Ошибка: файл не найден")
+
+# Конфигурация кнопки cat
+def cat():
+    lbl.configure(text="Ты ждала одного котика,"
+                       "\nа их дохуя, любуйся))", bg="Bisque", fg="black", font=("Times New Roman", 25))
+    lbl.place(relx=0.2, rely=0.04, anchor=CENTER)
+    window.configure(bg="red")
+    try:
+        pil_image = Image.open("D:\siski\89898.jpg")
+        photo = ImageTk.PhotoImage(pil_image)
+        image_label.configure(image=photo)
+        image_label.image = photo
+        image_label.place(x=-2, y=-2)
+        btn_beautiful.configure(bg="white", activebackground="pink", fg='black')
+        btn_fun.configure(bg="white", activebackground="pink", fg='black')
+        btn_quote.configure(bg="white", activebackground="pink", fg='black')
+        btn_facts.configure(bg="white", activebackground="pink", fg='black')
+        btn_developer.configure(bg="white", activebackground="pink", fg='black')
+        btn_fact.configure(bg="white", activebackground="pink", fg='black')
+        btn_cat.configure(bg="white", activebackground="pink", fg='black')
+    except FileNotFoundError:
+        print("Ошибка: файл не найден")
+
+
+# Main color window
+def color_change():
+    window.configure(bg="pink")
+
+# Import main background
+try:
+    pil_image = Image.open("D:\siski\kotik.png")
+    photo = ImageTk.PhotoImage(pil_image)
+
+    image_label = tk.Label(window, image=photo)
+    image_label.grid(column=0, row=1)
+    image_label.place(x=-2, y=-2)
+except FileNotFoundError:
+    print("Ошибка: файл не найден")
+
+# Welcome text
+lbl = Label(window, text="Здравствуйте, госпожа. Я ваш личный ПОДСОС! \nНа сердечках лежат кнопочки, "
+                         "которые мной управляют.",
+            justify="center", anchor="center", bg="LightPink", fg="white", font=("Times New Roman", 25))
+lbl.grid(column=0, row=0)
+lbl.place(x=550, y=0)
+
+# Функция кнопки beautiful
+btn_beautiful = Button(window, text="скажи\nчот\nприятное", command=beautiful, activebackground="pink",
+                       activeforeground="black", bg="DeepPink", foreground="white", width=9, height=3, relief="ridge",
+               font=("Times New Roman", 11))
+btn_beautiful.grid(column=1, row=0)
+btn_beautiful.place(x=232, y=198)
+
+# Функция кнопки fun
+btn_fun = Button(window, text="Втуши\nанекдот", command=fun, activebackground="MediumPurple", activeforeground="black",
+               bg="Magenta", foreground="white", width=9, height=3, relief="ridge",
+               font=("Times New Roman", 11))
+btn_fun.grid(column=1, row=0)
+btn_fun.place(x=383, y=480)
+
+# Функция кнопки quote
+btn_quote = Button(window, text="Совет\nхочу", command=quote, activebackground="pink", activeforeground="black",
+           bg="deeppink", foreground="white", width=5, height=2, relief="ridge",
+               font=("Times New Roman", 11))
+btn_quote.grid(column=1, row=0)
+btn_quote.place(x=360, y=100)
+
+# Функция кнопки facts
+btn_facts = Button(window, text="А ну\nнавали\nфактов", command=facts, activebackground="pink", activeforeground="black",
+           bg="deeppink", foreground="white", width=8, height=3, relief="ridge",
+               font=("Times New Roman", 11))
+btn_facts.grid(column=1, row=0)
+btn_facts.place(x=160, y=440)
+
+# Функция кнопки developer
+btn_developer = Button(window, text="Немного\nо моём\nразрабе", command=developer, activebackground="pink",
+                       activeforeground="black", bg="DeepPink", fg="white", width=8, height=3, relief="ridge",
+                       font=("Times New Roman", 11))
+btn_developer.grid(column=1, row=0)
+btn_developer.place(x=40, y=885)
+
+# Функция кнопки hub
+btn_hub = Button(window, text="Вернуться в Главное меню", command=hub, activebackground="pink",
+                       activeforeground="black", bg="Linen", fg="DimGray", width=22, height=3, relief="ridge",
+                       font=("Times New Roman", 11))
+btn_hub.grid(column=1, row=0)
+btn_hub.place(x=850, y=930)
+
+# Функция кнопки fact
+btn_fact = Button(window, text="Забавный\nфакт", command=fact, activebackground="pink",
+                       activeforeground="black", bg="DeepPink", fg="white", width=10, height=3, relief="ridge",
+                       font=("Times New Roman", 11))
+btn_fact.grid(column=1, row=0)
+btn_fact.place(x=65, y=10)
+
+# Функция кнопки minigame
+btn_minigame = Button(window, text="Мини-Игра", command=minigame, activebackground='Crimson',
+                      activeforeground='black', bg='red', fg='yellow', width=12, height=3, relief='ridge',
+                      font=('Times New Roman', 12))
+btn_minigame.grid(column=1, row=0)
+btn_minigame.place(x=882.5, y=860)
+
+# Функция кнопки cat
+btn_cat = Button(window, text="Посмотреть \nна котика!", command=cat, activebackground='pink',
+                      activeforeground='black', bg='DeepPink', fg='white', width=12, height=3, relief='ridge',
+                      font=('Times New Roman', 11))
+btn_cat.grid(column=1, row=0)
+btn_cat.place(x=30, y=260)
+
+# Вывод окна
+window.mainloop()
